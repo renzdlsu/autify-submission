@@ -12,6 +12,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 HF_CACHE_DIR = os.environ.get("HF_CACHE_DIR", "~/.cache/huggingface/transformers/")
+HF_MODEL_NAME = os.environ.get("HF_MODEL_NAME")
 HF_TOKEN = os.environ.get("HF_TOKEN")
 
 load_dotenv()
@@ -23,7 +24,7 @@ tokenizer.save_pretrained(HF_CACHE_DIR)
 logger.info("Tokenizer downloaded successfully")
 
 model = AutoModelForCausalLM.from_pretrained(
-    "stabilityai/stablecode-instruct-alpha-3b",
+    "HF_MODEL_NAME",
     trust_remote_code=True,
     torch_dtype="auto",
 )
