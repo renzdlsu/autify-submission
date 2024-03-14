@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snippet Manager</title>
+    <link rel="stylesheet" href="/static/style.css"> <!-- External CSS file for better organization -->
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Code Snippet Generator</h1>
+            <h4>== Using WizardCoder-1B-V1.0 ==</h4>
+        </header>
+        <main>
+            <form action="/snippet/" method="post" class="snippet-form">
+                <textarea name="description" required="required" placeholder="Enter your snippet description here..."></textarea>
+                <button type="submit">Generate</button>
+            </form>
+            <section class="snippets">
+                <h2>Snippets and Responses</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Description</th>
+                            <th>API Response</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for snippet_id, snippet_info in snippets.items() %}
+                            <tr>
+                                <td>{{ snippet_info.description }}</td>
+                                <td>{{ snippet_info.api_response }}</td>
+                                <td class="action-buttons">
+                                    <li><button class="delete-form" onclick="deleteSnippet('{{ snippet_id }}')">Delete</button></li>
+                                    <li><form action="/feedback/{{ snippet_id }}" method="post" class="feedback-form">
+                                        <input type="text" name="feedback" required="required" placeholder="Feedback" />
+                                        <button type="submit" class="button feedback">Submit Feedback</button>
+                                    </li>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

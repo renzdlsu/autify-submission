@@ -4,11 +4,12 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-torch = "*"
-transformers = "*"
-python-dotenv = "*"
 black = "*"
 fastapi = "*"
+uvicorn = "*"
+requests = "*"
+python-multipart = "*"
+jinja2 = "*"
 
 [dev-packages]
 
